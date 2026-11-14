@@ -1,0 +1,34 @@
+{
+    "status": "triaged",
+    "service": "checkout-api",
+    "provider": "demo",
+    "runbook": {
+        "id": "db-pool-exhaustion",
+        "title": "Database connection pool exhaustion"
+    },
+    "diagnosis": {
+        "summary": "Matched signals for database connection pool exhaustion.",
+        "hypothesis": "Requests may be waiting for database connections because the pool has reached capacity.",
+        "severity_hint": "unknown",
+        "evidence": [
+            {
+                "line_id": "L1",
+                "message": "12:00:03 ERROR connection pool exhausted active=20 max=20"
+            },
+            {
+                "line_id": "L2",
+                "message": "12:00:04 WARN pool acquire timeout after 1500ms"
+            }
+        ],
+        "next_checks": [
+            {
+                "id": "check-pool-metrics",
+                "description": "Compare active, idle, and waiting connections with the configured pool limit."
+            },
+            {
+                "id": "check-database-sessions",
+                "description": "Inspect database session and transaction ages for long-running or idle transactions."
+            }
+        ]
+    }
+}

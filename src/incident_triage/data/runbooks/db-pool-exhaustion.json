@@ -1,0 +1,24 @@
+{
+  "id": "db-pool-exhaustion",
+  "title": "Database connection pool exhaustion",
+  "hypothesis": "Requests may be waiting for database connections because the pool has reached capacity.",
+  "signals": [
+    "connection pool exhausted",
+    "pool acquire timeout",
+    "remaining connection slots are reserved"
+  ],
+  "checks": [
+    {
+      "id": "check-pool-metrics",
+      "description": "Compare active, idle, and waiting connections with the configured pool limit."
+    },
+    {
+      "id": "check-database-sessions",
+      "description": "Inspect database session and transaction ages for long-running or idle transactions."
+    },
+    {
+      "id": "correlate-traffic",
+      "description": "Compare the first pool timeout with request volume and recent deployments."
+    }
+  ]
+}

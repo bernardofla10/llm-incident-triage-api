@@ -1,0 +1,24 @@
+{
+  "id": "upstream-timeout",
+  "title": "Upstream request timeout",
+  "hypothesis": "A slow or unreachable dependency may be consuming the caller's request budget.",
+  "signals": [
+    "upstream request timeout",
+    "upstream_status=504",
+    "deadline exceeded calling"
+  ],
+  "checks": [
+    {
+      "id": "check-upstream-latency",
+      "description": "Compare upstream request latency and timeout rates around the first failure."
+    },
+    {
+      "id": "inspect-timeout-budget",
+      "description": "Inspect the caller timeout and retry settings for the affected dependency."
+    },
+    {
+      "id": "inspect-traces",
+      "description": "Inspect a failing trace to locate the slow dependency span."
+    }
+  ]
+}

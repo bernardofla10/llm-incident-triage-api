@@ -1,0 +1,24 @@
+{
+  "id": "queue-backlog",
+  "title": "Queue backlog",
+  "hypothesis": "Consumers may be processing messages more slowly than producers are publishing them.",
+  "signals": [
+    "queue backlog growing",
+    "consumer lag above threshold",
+    "oldest_message_age_s exceeded"
+  ],
+  "checks": [
+    {
+      "id": "compare-message-rates",
+      "description": "Compare publish and acknowledgement rates with the age of the oldest message."
+    },
+    {
+      "id": "inspect-consumer-health",
+      "description": "Inspect consumer error rates, processing latency, and the number of active consumers."
+    },
+    {
+      "id": "check-redeliveries",
+      "description": "Inspect redelivery rates and recent dead-letter counts for the affected queue."
+    }
+  ]
+}

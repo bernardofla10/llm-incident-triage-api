@@ -1,0 +1,8 @@
+{
+  "service": "checkout-api",
+  "logs": [
+    "12:00:03 ERROR connection pool exhausted active=20 max=20",
+    "12:00:04 WARN pool acquire timeout after 1500ms",
+    "12:00:04 INFO GET /healthz status=200"
+  ]
+}
